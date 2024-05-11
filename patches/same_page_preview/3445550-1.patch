@@ -1,0 +1,25 @@
+diff --git a/src/Controller/PreviewPaneController.php b/src/Controller/PreviewPaneController.php
+index 96ed554..3b2b6d5 100644
+--- a/src/Controller/PreviewPaneController.php
++++ b/src/Controller/PreviewPaneController.php
+@@ -3,6 +3,7 @@
+ namespace Drupal\same_page_preview\Controller;
+ 
+ use Drupal\Core\Entity\EntityInterface;
++use Drupal\Core\StringTranslation\TranslatableMarkup;
+ use Drupal\Core\Url;
+ use Drupal\node\Controller\NodePreviewController;
+ 
+@@ -98,10 +99,10 @@ class PreviewPaneController extends NodePreviewController {
+    * @param \Drupal\Core\Entity\EntityInterface|NULL $node_preview
+    *   The node preview entity.
+    *
+-   * @return \Drupal\Core\StringTranslation\TranslatableMarkup|string
++   * @return \Drupal\Core\StringTranslation\TranslatableMarkup
+    *   Title of the preview pane.
+    */
+-  public function title(EntityInterface $node_preview = NULL): string|TranslatableMarkup {
++  public function title(EntityInterface $node_preview = NULL): TranslatableMarkup {
+     return t('Preview');
+   }
+ 

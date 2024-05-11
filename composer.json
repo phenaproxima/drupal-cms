@@ -37,7 +37,9 @@
         "drupal/pathauto": "^1.12",
         "drupal/quick_node_clone": "^1.18",
         "drupal/redirect": "^1.9",
+        "drupal/same_page_preview": "^2.1",
         "drupal/scheduler": "^2.0.2",
+        "drupal/section_library": "^1.1",
         "drupal/simple_sitemap": "^4.1",
         "drupal/smart_date": "^4.0",
         "drupal/uli_custom_workflow": "^1.0",
@@ -106,6 +108,9 @@
             "drupal/core": {
                 "#3444246: Create a config action to set the status of the entity": "./patches/core/recipes-103.patch",
                 "Add config actions to make a bundle of an entity type translatable": "./patches/core/make-translatable-action.patch"
+            },
+            "drupal/same_page_preview": {
+                "Fix temporary incompatibilities": "./patches/same_page_preview/3445550-1.patch"
             }
         }
     },

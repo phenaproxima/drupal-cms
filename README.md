@@ -39,6 +39,7 @@ You'll need DDEV 1.23.0 or later. [See the documentation](https://ddev.readthedo
 * [Pathauto](https://drupal.org/project/pathauto)
 * [Quick Node Clone](https://drupal.org/project/quick_node_clone)
 * [Redirect](https://drupal.org/project/redirect)
+* [Same Page Preview](https://drupal.org/project/same_page_preview)
 * [Scheduler](https://drupal.org/project/scheduler)
 * [Simple Sitemap](https://drupal.org/project/simple_sitemap)
 * [Smart Date](https://drupal.org/project/smart_date)
@@ -48,7 +49,7 @@ You'll need DDEV 1.23.0 or later. [See the documentation](https://ddev.readthedo
 ...and, of course, [Drush](https://www.drush.org).
 
 ## What this gets you
-* Useful content types, already set up for translation, meta tags, pretty URLs, moderation, and scheduling.
+* Useful content types, already set up for translation, meta tags, pretty URLs, moderation, previewing, and scheduling.
 * A standard set of media types, with some enhancements (setting an image's focal point, for example, or better linking to uploaded documents).
 * An amazingly full-featured platform for building web forms with anti-spam protection.
 * A much nicer administrative experience than you'd get with plain Drupal, based on the Gin theme, plus the Navigation and Coffee modules.

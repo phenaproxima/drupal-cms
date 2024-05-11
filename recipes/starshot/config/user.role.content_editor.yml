@@ -13,6 +13,7 @@ permissions:
   - 'access contextual links'
   - 'access media overview'
   - 'access navigation'
+  - 'access same_page_preview'
   - 'access site in maintenance mode'
   - 'access toolbar'
   - 'administer redirects'
