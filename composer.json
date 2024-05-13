@@ -109,6 +109,11 @@
             }
         }
     },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\Starshot\\": "src"
+        }
+    },
     "scripts": {
         "drupal:install": [
             "Composer\\Config::disableProcessTimeout",
@@ -123,6 +128,13 @@
             "drush user:password admin admin",
             "drush user:password editor editor",
             "drush user:unblock editor"
+        ],
+        "drupal:move-db": [
+            "chmod +w web/sites/default/settings.php",
+            "drush sql:dump --result-file=../starshot-db-dump.sql",
+            "drush sql:add-connection $TARGET_DB_URL starshot",
+            "drush sql:query --file=../starshot-db-dump.sql --database=starshot",
+            "rm starshot-db-dump.sql"
         ],
         "drupal:rebuild": [
             "sudo rm -rf vendor web composer.lock patches.lock.json | true",
