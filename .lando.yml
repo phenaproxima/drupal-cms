@@ -1,0 +1,13 @@
+name: starshot
+recipe: drupal10
+config:
+  webroot: web
+tooling:
+  drupal:install:
+    service: appserver
+    cmd: |
+      composer install
+      composer drupal:install
+      echo "🚀 Welcome to Starshot! Click on the link below to log in.👇"      
+      drush uli -l 'https://starshot.lndo.site'
+      echo ""
