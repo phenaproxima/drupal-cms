@@ -108,20 +108,6 @@ config:
       simple_config_update:
         name: 'Starshot'
         page.front: '/node'
-    user.role.content_editor:
-      grantPermissionsForEachMediaType:
-        - 'create %bundle media'
-        - 'delete any %bundle media'
-        - 'edit any %bundle media'
-      grantPermissionsForEachNodeType:
-        - 'clone %bundle content'
-        - 'create %bundle content'
-        - 'delete %bundle revisions'
-        - 'delete any %bundle content'
-        - 'edit any %bundle content'
-      grantPermissionsForEachTaxonomyVocabulary:
-        - 'create terms in %bundle'
-        - 'edit terms in %bundle'
     views.view.files:
       setStatus: false
     node.settings:

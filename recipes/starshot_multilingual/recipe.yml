@@ -31,6 +31,5 @@ config:
       grantPermissions:
         - 'create content translations'
         - 'delete content translations'
+        - 'translate any entity'
         - 'update content translations'
-      grantPermissionsForEachNodeType:
-        - 'translate %bundle node'
