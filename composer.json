@@ -168,20 +168,45 @@
             }
         },
         "installer-paths": {
-            "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
-            "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
-            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
-            "web/profiles/custom/{$name}": ["type:drupal-custom-profile"],
-            "web/recipes/{$name}": ["type:drupal-recipe"],
-            "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "web/recipes/{$name}": [
+                "type:drupal-recipe"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
         },
-        "installer-types": ["drupal-recipe"],
+        "installer-types": [
+            "drupal-recipe"
+        ],
         "drupal-core-project-message": {
-            "include-keys": ["homepage", "support"],
+            "include-keys": [
+                "homepage",
+                "support"
+            ],
             "post-create-project-cmd-message": [
                 "<bg=blue;fg=white>                                                 </>",
                 "<bg=blue;fg=white>  Congratulations, you’ve installed Starshot!    </>",
@@ -202,6 +227,9 @@
         }
     },
     "scripts": {
+        "web-root": [
+            "\\Drupal\\starshot_installer\\ScriptHandler::webRoot"
+        ],
         "drupal:install": [
             "Composer\\Config::disableProcessTimeout",
             "\\Drupal\\starshot_installer\\ScriptHandler::configureDrush",
@@ -209,7 +237,8 @@
             "drush webform-libraries-download"
         ],
         "drupal:install-dev": [
-            "cd web/sites/default && chmod +w . && rm -rf settings.php files",
+            "@web-root",
+            "cd $WEB_ROOT/sites/default && chmod +w . && rm -rf settings.php files",
             "@drupal:install",
             "drush config:set --yes system.logging error_level verbose",
             "drush install --yes default_content",
@@ -217,17 +246,19 @@
             "drush user:unblock editor"
         ],
         "drupal:rebuild": [
-            "sudo rm -rf vendor web composer.lock patches.lock.json | true",
-            "git checkout web/.gitkeep",
+            "@web-root",
+            "sudo rm -rf vendor $WEB_ROOT composer.lock patches.lock.json | true",
+            "git checkout $WEB_ROOT/.gitkeep",
             "@composer install",
             "@drupal:install"
         ],
         "drupal:run-server": [
             "Composer\\Config::disableProcessTimeout",
-            "@php -d max_execution_time=0 web/core/scripts/drupal quick-start"
+            "@web-root",
+            "@php -d max_execution_time=0 $WEB_ROOT/core/scripts/drupal quick-start"
         ],
         "drupal:run-tests": [
-            "./vendor/bin/phpunit"
+            "phpunit"
         ],
         "quick-start": [
             "@drupal:install",
@@ -240,7 +271,8 @@
         "drupal:rebuild": "Rebuilds the codebase and reinstalls Starshot from scratch. Should only be used for internal development.",
         "drupal:run-server": "Runs Starshot using the PHP webserver and opens it in the default browser.",
         "drupal:run-tests": "Runs Starshot's automated test suite.",
-        "quick-start": "Installs Starshot and opens it in a browser."
+        "quick-start": "Installs Starshot and opens it in a browser.",
+        "web-root": "Changes the configured web root in composer.json."
     },
     "scripts-aliases": {
         "drupal:install": [

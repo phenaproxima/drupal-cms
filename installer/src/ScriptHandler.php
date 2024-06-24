@@ -4,13 +4,48 @@ declare(strict_types=1);
 
 namespace Drupal\starshot_installer;
 
+use Composer\Json\JsonFile;
 use Composer\Script\Event;
+use Composer\Util\Platform;
 use Drupal\Component\Serialization\Yaml;
 
 /**
  * Contains Composer scripts used during Starshot installation.
  */
 final class ScriptHandler {
+
+  /**
+   * Sets the WEB_ROOT environment variable, optionally changing the web root.
+   *
+   * @param \Composer\Script\Event $event
+   *   The event object.
+   */
+  public static function webRoot(Event $event): void {
+    $extra = $event->getComposer()->getPackage()->getExtra();
+    $old_root = $new_root = $extra['drupal-scaffold']['locations']['web-root'];
+
+    // If a new web root was passed, update `composer.json`.
+    $arguments = $event->getArguments();
+    if ($arguments) {
+      assert(str_ends_with($old_root, '/'));
+      $new_root = rtrim($arguments[0], '/');
+
+      $file = new JsonFile('composer.json');
+      $data = $file->read();
+
+      $data['extra']['drupal-scaffold']['locations']['web-root'] = "$new_root/";
+
+      $installer_paths = preg_replace(
+        "|^$old_root|",
+        $data['extra']['drupal-scaffold']['locations']['web-root'],
+        array_keys($extra['installer-paths']),
+      );
+      $data['extra']['installer-paths'] = array_combine($installer_paths, $extra['installer-paths']);
+
+      $file->write($data);
+    }
+    Platform::putEnv('WEB_ROOT', $new_root);
+  }
 
   /**
    * Writes Drush configuration for installing Starshot.
