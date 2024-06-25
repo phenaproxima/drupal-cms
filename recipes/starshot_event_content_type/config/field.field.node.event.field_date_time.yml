@@ -13,7 +13,7 @@ bundle: event
 label: 'Date & Time'
 description: ''
 required: true
-translatable: false
+translatable: true
 default_value:
   -
     default_duration: 60

@@ -1,0 +1,11 @@
+{
+    "name": "drupal/starshot_card_block_type",
+    "type": "drupal-recipe",
+    "description": "Provides a Card block type, with teaser text, an image or video, and a link.",
+    "version": "dev-main",
+    "require": {
+        "drupal/core": "^10.3",
+        "drupal/starshot_image_media_type": "*",
+        "drupal/starshot_local_video_media_type": "*"
+    }
+}

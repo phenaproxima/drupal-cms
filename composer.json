@@ -55,6 +55,10 @@
                 "symlink": false
             }
         },
+        "starshot_card_block_type": {
+            "type": "path",
+            "url": "recipes/starshot_card_block_type"
+        },
         "starshot_content_type_base": {
             "type": "path",
             "url": "recipes/starshot_content_type_base",
@@ -137,6 +141,7 @@
         "drush/drush": "^12.5"
     },
     "require-dev": {
+        "drupal/base_field_override_ui": "^1.1",
         "drupal/core-dev": "^10.3",
         "drupal/default_content": "^2.0@alpha",
         "weitzman/drupal-test-traits": "^2.2"
@@ -194,7 +199,8 @@
         "patches": {
             "drupal/core": {
                 "#3444246: Create a config action to set the status of the entity": "./patches/core/recipes-103.patch",
-                "Add config actions to make a bundle of an entity type translatable": "./patches/core/make-translatable-action.patch"
+                "Add config actions to make a bundle of an entity type translatable": "./patches/core/make-translatable-action.patch",
+                "Give block content entities bundle-level permissions granularity": "./patches/core/block-content-granularity.patch"
             }
         }
     },
@@ -209,7 +215,7 @@
             "cd web/sites/default && chmod +w . && rm -rf settings.php files",
             "@drupal:install",
             "drush config:set --yes system.logging error_level verbose",
-            "drush install --yes default_content",
+            "drush pm:enable --yes base_field_override_ui default_content",
             "drush user:password editor editor",
             "drush user:unblock editor"
         ],

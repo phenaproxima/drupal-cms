@@ -1,0 +1,17 @@
+name: 'Card block type'
+type: Starshot
+description: 'Provides a Card block type, with teaser text, an image or video, and a link.'
+recipes:
+  - core/recipes/remote_video_media_type
+  - starshot_image_media_type
+  - starshot_local_video_media_type
+install:
+  - block_content
+  - link
+  - views
+config:
+  import:
+    block_content:
+      - field.storage.block_content.body
+      - core.entity_view_mode.block_content.full
+      - views.view.block_content

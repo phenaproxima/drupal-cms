@@ -2,14 +2,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_image
+    - block_content.type.card
+    - field.storage.block_content.field_card_media
     - media.type.image
-    - node.type.event
-id: node.event.field_image
-field_name: field_image
-entity_type: node
-bundle: event
-label: Image
+    - media.type.remote_video
+    - media.type.video
+id: block_content.card.field_card_media
+field_name: field_card_media
+entity_type: block_content
+bundle: card
+label: Image/Video
 description: ''
 required: false
 translatable: true
@@ -20,9 +22,11 @@ settings:
   handler_settings:
     target_bundles:
       image: image
+      remote_video: remote_video
+      video: video
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: image
 field_type: entity_reference

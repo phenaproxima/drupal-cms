@@ -13,6 +13,7 @@
         "drupal/starshot_audio_media_type": "*",
         "drupal/starshot_blog": "*",
         "drupal/starshot_basic_html_editor": "*",
+        "drupal/starshot_card_block_type": "*",
         "drupal/starshot_document_media_type": "*",
         "drupal/starshot_event_content_type": "*",
         "drupal/starshot_forms": "*",

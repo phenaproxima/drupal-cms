@@ -2,13 +2,23 @@ name: Multilingual support
 type: Starshot
 description: Adds support for translations to all content types.
 install:
+  - block_content
   - content_translation
   - language
   - node
 config:
   actions:
+    block_content.type.*:
+      makeTranslatable: ~
     node.type.*:
       makeTranslatable: ~
+    core.entity_form_display.block_content.*.default:
+      setComponent:
+        name: langcode
+        options:
+          type: language_select
+          weight: 2
+          region: content
     core.entity_form_display.node.*.default:
       setComponent:
         name: langcode
@@ -27,10 +37,24 @@ config:
           key: bundle_settings
           value:
             untranslatable_fields_hide: '1'
+    language.content_settings.block_content.*:
+      setThirdPartySettings:
+        -
+          module: content_translation
+          key: enabled
+          value: true
+        -
+          module: content_translation
+          key: bundle_settings
+          value:
+            untranslatable_fields_hide: '1'
     user.role.content_editor:
       grantPermissions:
         - 'create content translations'
         - 'delete content translations'
+        - 'translate editable entities'
         - 'update content translations'
+      grantPermissionsForEachBlockContentType:
+        - 'translate %bundle block_content'
       grantPermissionsForEachNodeType:
         - 'translate %bundle node'

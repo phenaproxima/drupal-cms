@@ -1,0 +1,12 @@
+diff --git a/core/modules/block_content/src/Entity/BlockContent.php b/core/modules/block_content/src/Entity/BlockContent.php
+index 81e6bfcdae..fffa8e3dfa 100644
+--- a/core/modules/block_content/src/Entity/BlockContent.php
++++ b/core/modules/block_content/src/Entity/BlockContent.php
+@@ -78,6 +78,7 @@
+  *   bundle_entity_type = "block_content_type",
+  *   field_ui_base_route = "entity.block_content_type.edit_form",
+  *   render_cache = FALSE,
++ *   permission_granularity = "bundle",
+  * )
+  *
+  * Note that render caching of block_content entities is disabled because they
