@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
+use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Core\Batch\BatchBuilder;
 use Drupal\Core\Extension\ModuleInstallerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Recipe\Recipe;
 use Drupal\Core\Recipe\RecipeRunner;
+use Drupal\geocoder\Entity\GeocoderProvider;
 use Symfony\Component\Process\ExecutableFinder;
 
 /**
@@ -17,6 +19,8 @@ function starshot_installer_install_tasks(): array {
     'starshot_installer_apply_recipes' => [
       'type' => 'batch',
       'display_name' => t('Apply recipes'),
+    ],
+    'starshot_installer_configure_geocoder' => [
     ],
     'starshot_installer_uninstall_myself' => [
       // As a final task, this profile should uninstall itself.
@@ -111,6 +115,20 @@ function starshot_installer_apply_recipes(): array {
     $batch->addOperation($callback, $arguments);
   }
   return $batch->toArray();
+}
+
+function starshot_installer_configure_geocoder(): void {
+  /** @var \Drupal\geocoder\GeocoderProviderInterface $provider */
+  $provider = GeocoderProvider::load('nominatim');
+  $plugin = $provider->getPlugin();
+  if ($plugin instanceof ConfigurableInterface) {
+    $uuid = \Drupal::config('system.site')->get('uuid');
+    $configuration = $plugin->getConfiguration();
+    $configuration['userAgent'] = "Drupal $uuid";
+    $configuration['referer'] = "http://drupal-$uuid.local";
+    $plugin->setConfiguration($configuration);
+  }
+  $provider->save();
 }
 
 /**

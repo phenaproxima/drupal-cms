@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: nominatim
+label: Nominatim
+plugin: nominatim
+configuration:
+  throttle:
+    period: 2
+    limit: 1
+  geocoder:
+    locale: ''
+  rootUrl: 'https://nominatim.openstreetmap.org'
+  # @see starshot_installer_configure_geocoder()
+  userAgent: ''
+  referer: ''

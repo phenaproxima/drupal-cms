@@ -5,9 +5,12 @@
     "require": {
         "drupal/core": ">=10.3",
         "drupal/address": "^2",
-        "drupal/geolocation": "^3.12",
+        "drupal/geocoder": "^4.24",
+        "drupal/geofield": "^1.59",
+        "drupal/leaflet": "^10.2",
         "drupal/smart_date": "^4",
         "drupal/starshot_content_type_base": "*",
-        "drupal/starshot_image_media_type": "*"
+        "drupal/starshot_image_media_type": "*",
+        "geocoder-php/nominatim-provider": "^5.7"
     }
 }

@@ -62,3 +62,15 @@ default:
       sorting_code: ''
       address_line1: 'Kennedy Space Center Visitor Complex'
       address_line2: 'Space Commerce Way'
+  field_map_location:
+    -
+      value: 'POINT(-80.681856 28.524280)'
+      geo_type: Point
+      lat: 28.52428
+      lon: -80.681856
+      left: -80.681856
+      top: 28.52428
+      right: -80.681856
+      bottom: 28.52428
+      geohash: djndk09mbrpv
+      latlon: '28.52428,-80.681856'

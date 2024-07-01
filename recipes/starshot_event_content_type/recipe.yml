@@ -5,9 +5,10 @@ recipes:
   - starshot_image_media_type
 install:
   - address
-  - geolocation_address
-  - geolocation_leaflet
+  - geocoder_address
+  - geocoder_geofield
   - layout_builder
+  - leaflet
   - smart_date
 config:
   import:

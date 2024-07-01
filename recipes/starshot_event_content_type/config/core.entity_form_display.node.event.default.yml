@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.event.field_date_time
     - field.field.node.event.field_image
     - field.field.node.event.field_location
+    - field.field.node.event.field_map_location
     - field.field.node.event.field_meta_tags
     - node.type.event
     - workflows.workflow.editorial
@@ -143,6 +144,9 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  # This field stores a latitude and longitude, which are derived from the address
+  # field and therefore need not be visible on the form.
+  field_map_location: true
   # These settings are advanced, and therefore hidden by default to avoid making
   # the edit form too overwhelming. Administrators can always re-enable them later.
   field_meta_tags: true
